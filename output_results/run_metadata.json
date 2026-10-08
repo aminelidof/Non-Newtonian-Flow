@@ -1,0 +1,3380 @@
+{
+  "timestamp_utc": "2026-09-29T19:46:08.889521+00:00",
+  "formulation": {
+    "version": "2.2",
+    "temperature": "theta = T/Br (Br-invariant); T(Br) = Br*theta exact",
+    "wall_constraints": "hard, multiplicative (1 - (y/H)^2)",
+    "loss_terms": [
+      "loss_pde_momentum",
+      "loss_pde_energy"
+    ]
+  },
+  "reproducibility": {
+    "float_dtype": "float64",
+    "dde_backend": "pytorch",
+    "cuda_available": true,
+    "cuda_device_name": "NVIDIA GeForce RTX 3060"
+  },
+  "software_versions": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "pytorch": "2.7.1+cu118",
+    "deepxde": "1.15.0",
+    "pandas": "2.3.3",
+    "matplotlib": "3.10.9"
+  },
+  "study_design": {
+    "relaxation_times": [
+      5.0,
+      2.0,
+      0.5
+    ],
+    "power_law_indices": [
+      0.3,
+      0.5,
+      0.9
+    ],
+    "seeds": [
+      42,
+      0,
+      1,
+      2,
+      3
+    ],
+    "brinkman_reporting_values": [
+      0.1,
+      1.0
+    ],
+    "quadrature_points": 20001,
+    "validation_points": 401,
+    "output_directory": "output_results_v2.2"
+  },
+  "default_parameters": {
+    "rheology": {
+      "mu_0": 1.0,
+      "mu_inf": 0.01,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.5,
+      "yasuda_exponent": 2.0,
+      "gamma_regularization": 1e-06
+    },
+    "flow": {
+      "half_channel_height": 1.0,
+      "pressure_gradient": -1.0,
+      "thermal_conductivity": 0.1
+    }
+  },
+  "training_configuration": {
+    "float_dtype": "float64",
+    "layer_sizes": [
+      1,
+      50,
+      50,
+      50,
+      2
+    ],
+    "activation": "tanh",
+    "kernel_initializer": "Glorot normal",
+    "num_domain": 600,
+    "num_boundary": 0,
+    "num_test": 1000,
+    "train_distribution": "Hammersley",
+    "adam_iterations": 5000,
+    "adam_learning_rate": 0.001,
+    "adam_display_every": 500,
+    "lbfgs_max_iterations": 5000,
+    "lbfgs_restarts": 1,
+    "loss_weights": [
+      1.0,
+      1.0
+    ]
+  },
+  "runs": [
+    {
+      "case": "lam5_n0.3",
+      "seed": 42,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.3,
+      "detailed": true,
+      "timings_s": {
+        "adam_s": 157.52210639999248,
+        "lbfgs_s": 980.6716781998985,
+        "post_processing_s": 2.021828700089827,
+        "total_s": 1144.1333984998055
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.496432256843934e-06,
+          "loss_pde_momentum": 1.0181417672435334e-06,
+          "loss_pde_energy": 4.782904896004005e-07
+        },
+        "L-BFGS": {
+          "loss_total": 1.496432256843934e-06,
+          "loss_pde_momentum": 1.0181417672435334e-06,
+          "loss_pde_energy": 4.782904896004005e-07
+        }
+      },
+      "final_total_loss": 1.496432256843934e-06,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 8.51793960352345e-05,
+          "mae": 7.751366196599729e-05,
+          "relative_l2": 1.7404936699224172e-05,
+          "max_abs_error": 0.00013065118784361118,
+          "r2": 0.9999999973035496
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 0.0001626066546210918,
+          "mae": 0.00015428839194440018,
+          "relative_l2": 2.221543191029441e-05,
+          "max_abs_error": 0.00021469265902496204,
+          "r2": 0.9999999936641015
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 1.6260665462108432e-05,
+          "mae": 1.5428839194438707e-05,
+          "relative_l2": 2.221543191029339e-05,
+          "max_abs_error": 2.146926590251841e-05,
+          "r2": 0.9999999936641015
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 0.0001626066546210918,
+          "mae": 0.00015428839194440018,
+          "relative_l2": 2.221543191029441e-05,
+          "max_abs_error": 0.00021469265902496204,
+          "r2": 0.9999999936641015
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 3.463514025173987e-05,
+          "mae": 1.9896475078575716e-05,
+          "relative_l2": 7.723384064448143e-05,
+          "max_abs_error": 0.0001412580082990056,
+          "r2": 0.9999999882359293
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.3",
+      "seed": 0,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 159.06802270002663,
+        "lbfgs_s": 1123.4409719000105,
+        "post_processing_s": 0.019060000078752637,
+        "total_s": 1282.5394945999142
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 9.087584315305299e-07,
+          "loss_pde_momentum": 6.571040604537121e-07,
+          "loss_pde_energy": 2.516543710768179e-07
+        },
+        "L-BFGS": {
+          "loss_total": 9.087584315305299e-07,
+          "loss_pde_momentum": 6.571040604537121e-07,
+          "loss_pde_energy": 2.516543710768179e-07
+        }
+      },
+      "final_total_loss": 9.087584315305299e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 0.00034074682604164937,
+          "mae": 0.0003174220214538649,
+          "relative_l2": 6.962572187367035e-05,
+          "max_abs_error": 0.00042667046165334455,
+          "r2": 0.9999999568493882
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 0.0007726111374744951,
+          "mae": 0.0007391588823067348,
+          "relative_l2": 0.00010555465984891753,
+          "max_abs_error": 0.0009003271930563272,
+          "r2": 0.9999998569613141
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 7.726111374745307e-05,
+          "mae": 7.391588823067641e-05,
+          "relative_l2": 0.00010555465984892237,
+          "max_abs_error": 9.003271930563272e-05,
+          "r2": 0.9999998569613141
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 0.0007726111374744951,
+          "mae": 0.0007391588823067348,
+          "relative_l2": 0.00010555465984891753,
+          "max_abs_error": 0.0009003271930563272,
+          "r2": 0.9999998569613141
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 3.562830944149424e-05,
+          "mae": 2.1319296891843704e-05,
+          "relative_l2": 7.944853561545513e-05,
+          "max_abs_error": 0.00013355370901724228,
+          "r2": 0.9999999875515821
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.3",
+      "seed": 1,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 120.16894089989364,
+        "lbfgs_s": 912.8839634999167,
+        "post_processing_s": 0.01375519996508956,
+        "total_s": 1033.073359400034
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.5068371666135346e-06,
+          "loss_pde_momentum": 1.1350279736419522e-06,
+          "loss_pde_energy": 3.7180919297158244e-07
+        },
+        "L-BFGS": {
+          "loss_total": 1.5068371666135346e-06,
+          "loss_pde_momentum": 1.1350279736419522e-06,
+          "loss_pde_energy": 3.7180919297158244e-07
+        }
+      },
+      "final_total_loss": 1.5068371666135346e-06,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 0.000212402809255116,
+          "mae": 0.0001955368666857997,
+          "relative_l2": 4.3400841305489797e-05,
+          "max_abs_error": 0.0003230846814128441,
+          "r2": 0.9999999832334452
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 0.00048794521887373944,
+          "mae": 0.0004667704772761561,
+          "relative_l2": 6.666340815572754e-05,
+          "max_abs_error": 0.0005711501957534892,
+          "r2": 0.9999999429476265
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 4.8794521887375865e-05,
+          "mae": 4.66770477276172e-05,
+          "relative_l2": 6.666340815573016e-05,
+          "max_abs_error": 5.711501957528231e-05,
+          "r2": 0.9999999429476265
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 0.00048794521887373944,
+          "mae": 0.0004667704772761561,
+          "relative_l2": 6.666340815572754e-05,
+          "max_abs_error": 0.0005711501957534892,
+          "r2": 0.9999999429476265
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 5.4491649039595124e-05,
+          "mae": 2.911942871440895e-05,
+          "relative_l2": 0.00012151240929846335,
+          "max_abs_error": 0.00022360714791980207,
+          "r2": 0.9999999708805192
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.3",
+      "seed": 2,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 115.97048339992762,
+        "lbfgs_s": 971.2747376000043,
+        "post_processing_s": 0.014822700060904026,
+        "total_s": 1087.2666177998763
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 6.366594492776542e-07,
+          "loss_pde_momentum": 3.9927608687556827e-07,
+          "loss_pde_energy": 2.3738336240208587e-07
+        },
+        "L-BFGS": {
+          "loss_total": 6.366594492776542e-07,
+          "loss_pde_momentum": 3.9927608687556827e-07,
+          "loss_pde_energy": 2.3738336240208587e-07
+        }
+      },
+      "final_total_loss": 6.366594492776542e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 0.00017681248774333735,
+          "mae": 0.00016372507733639714,
+          "relative_l2": 3.612857451504074e-05,
+          "max_abs_error": 0.0002298443058119659,
+          "r2": 0.9999999883815234
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 0.0004159591544154715,
+          "mae": 0.0003970726648637214,
+          "relative_l2": 5.6828622997708054e-05,
+          "max_abs_error": 0.0004933672348226281,
+          "r2": 0.9999999585396507
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 4.159591544154685e-05,
+          "mae": 3.970726648637154e-05,
+          "relative_l2": 5.682862299770763e-05,
+          "max_abs_error": 4.9336723482285016e-05,
+          "r2": 0.9999999585396507
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 0.0004159591544154715,
+          "mae": 0.0003970726648637214,
+          "relative_l2": 5.6828622997708054e-05,
+          "max_abs_error": 0.0004933672348226281,
+          "r2": 0.9999999585396507
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.6545004349140918e-05,
+          "mae": 1.578195461231053e-05,
+          "relative_l2": 5.919342670210861e-05,
+          "max_abs_error": 9.948327954328873e-05,
+          "r2": 0.9999999930898206
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.3",
+      "seed": 3,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 119.38659420004115,
+        "lbfgs_s": 857.4049950998742,
+        "post_processing_s": 0.013501400128006935,
+        "total_s": 976.8116954998113
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.8291472929146685e-06,
+          "loss_pde_momentum": 1.0029191192932695e-06,
+          "loss_pde_energy": 8.26228173621399e-07
+        },
+        "L-BFGS": {
+          "loss_total": 1.8291472929146685e-06,
+          "loss_pde_momentum": 1.0029191192932695e-06,
+          "loss_pde_energy": 8.26228173621399e-07
+        }
+      },
+      "final_total_loss": 1.8291472929146685e-06,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 0.00037110440700336767,
+          "mae": 0.00034601718341640403,
+          "relative_l2": 7.582876861471227e-05,
+          "max_abs_error": 0.00048686899102090564,
+          "r2": 0.9999999488182015
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 0.0008163814987113471,
+          "mae": 0.0007822263019872022,
+          "relative_l2": 0.00011153459641431901,
+          "max_abs_error": 0.0009779429853633559,
+          "r2": 0.9999998402952289
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 8.163814987113417e-05,
+          "mae": 7.82226301987197e-05,
+          "relative_l2": 0.00011153459641431828,
+          "max_abs_error": 9.779429853629118e-05,
+          "r2": 0.9999998402952289
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 0.0008163814987113471,
+          "mae": 0.0007822263019872022,
+          "relative_l2": 0.00011153459641431901,
+          "max_abs_error": 0.0009779429853633559,
+          "r2": 0.9999998402952289
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 4.917363233417543e-05,
+          "mae": 3.0279503596696505e-05,
+          "relative_l2": 0.00010965361930120205,
+          "max_abs_error": 0.00015826763433496316,
+          "r2": 0.9999999762869015
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.5",
+      "seed": 42,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.5,
+      "detailed": true,
+      "timings_s": {
+        "adam_s": 120.598384300014,
+        "lbfgs_s": 1044.1501444999594,
+        "post_processing_s": 1.4876353000290692,
+        "total_s": 1166.2537730999757
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 3.4093569343980553e-07,
+          "loss_pde_momentum": 2.7891414696244696e-07,
+          "loss_pde_energy": 6.202154647735858e-08
+        },
+        "L-BFGS": {
+          "loss_total": 3.4093569343980553e-07,
+          "loss_pde_momentum": 2.7891414696244696e-07,
+          "loss_pde_energy": 6.202154647735858e-08
+        }
+      },
+      "final_total_loss": 3.4093569343980553e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 5.9188637241665245e-06,
+          "mae": 3.963794415459704e-06,
+          "relative_l2": 4.658464888115711e-06,
+          "max_abs_error": 1.6749725632925205e-05,
+          "r2": 0.9999999998334982
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 5.2752972688704e-06,
+          "mae": 4.093598239392724e-06,
+          "relative_l2": 2.509199976090094e-06,
+          "max_abs_error": 1.4789340248455574e-05,
+          "r2": 0.999999999927797
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 5.275297268872454e-07,
+          "mae": 4.0935982393880166e-07,
+          "relative_l2": 2.509199976091071e-06,
+          "max_abs_error": 1.4789340248566596e-06,
+          "r2": 0.999999999927797
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 5.2752972688704e-06,
+          "mae": 4.093598239392724e-06,
+          "relative_l2": 2.509199976090094e-06,
+          "max_abs_error": 1.4789340248455574e-05,
+          "r2": 0.999999999927797
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.5014379162991333e-05,
+          "mae": 1.4912508296983814e-05,
+          "relative_l2": 4.451891411628742e-05,
+          "max_abs_error": 8.746587168151354e-05,
+          "r2": 0.9999999904600543
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.5",
+      "seed": 0,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 119.35454780003056,
+        "lbfgs_s": 1068.5515282000415,
+        "post_processing_s": 0.012782899895682931,
+        "total_s": 1187.9267221000046
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 2.791901873272681e-07,
+          "loss_pde_momentum": 1.475509614972168e-07,
+          "loss_pde_energy": 1.316392258300513e-07
+        },
+        "L-BFGS": {
+          "loss_total": 2.791901873272681e-07,
+          "loss_pde_momentum": 1.475509614972168e-07,
+          "loss_pde_energy": 1.316392258300513e-07
+        }
+      },
+      "final_total_loss": 2.791901873272681e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.4933710395121916e-05,
+          "mae": 1.3172507587621281e-05,
+          "relative_l2": 1.1753635286604006e-05,
+          "max_abs_error": 2.7065288362937423e-05,
+          "r2": 0.9999999989400686
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 3.870631761805304e-05,
+          "mae": 3.551867593080056e-05,
+          "relative_l2": 1.8410695415189556e-05,
+          "max_abs_error": 6.63279515897841e-05,
+          "r2": 0.9999999961129035
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 3.870631761806055e-06,
+          "mae": 3.5518675930806565e-06,
+          "relative_l2": 1.8410695415193134e-05,
+          "max_abs_error": 6.6327951589728595e-06,
+          "r2": 0.9999999961129035
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 3.870631761805304e-05,
+          "mae": 3.551867593080056e-05,
+          "relative_l2": 1.8410695415189556e-05,
+          "max_abs_error": 6.63279515897841e-05,
+          "r2": 0.9999999961129035
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.6935072931293816e-05,
+          "mae": 1.1300141931761064e-05,
+          "relative_l2": 3.013990682993929e-05,
+          "max_abs_error": 5.849690563186627e-05,
+          "r2": 0.9999999956273916
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.5",
+      "seed": 1,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 119.10911160008982,
+        "lbfgs_s": 952.0163038999308,
+        "post_processing_s": 0.016178800025954843,
+        "total_s": 1071.1494938000105
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 6.301606259830973e-07,
+          "loss_pde_momentum": 4.04694587833564e-07,
+          "loss_pde_energy": 2.254660381495333e-07
+        },
+        "L-BFGS": {
+          "loss_total": 6.301606259830973e-07,
+          "loss_pde_momentum": 4.04694587833564e-07,
+          "loss_pde_energy": 2.254660381495333e-07
+        }
+      },
+      "final_total_loss": 6.301606259830973e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 2.7433468498503314e-05,
+          "mae": 2.4510410498079858e-05,
+          "relative_l2": 2.1591618884163827e-05,
+          "max_abs_error": 5.016841697536023e-05,
+          "r2": 0.9999999964231253
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 6.61500327182716e-05,
+          "mae": 6.217310271642455e-05,
+          "relative_l2": 3.146432363054075e-05,
+          "max_abs_error": 9.540032675703358e-05,
+          "r2": 0.9999999886467099
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 6.615003271828667e-06,
+          "mae": 6.217310271643681e-06,
+          "relative_l2": 3.146432363054793e-05,
+          "max_abs_error": 9.540032675725563e-06,
+          "r2": 0.9999999886467099
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 6.61500327182716e-05,
+          "mae": 6.217310271642455e-05,
+          "relative_l2": 3.146432363054075e-05,
+          "max_abs_error": 9.540032675703358e-05,
+          "r2": 0.9999999886467099
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.7686850079817823e-05,
+          "mae": 1.7262078212918216e-05,
+          "relative_l2": 4.927519858967937e-05,
+          "max_abs_error": 9.511868785416766e-05,
+          "r2": 0.9999999883127174
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.5",
+      "seed": 2,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 113.83085329993628,
+        "lbfgs_s": 950.3557332998607,
+        "post_processing_s": 0.013870100025087595,
+        "total_s": 1064.2083066001069
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 2.2630715368213643e-07,
+          "loss_pde_momentum": 5.75784457650746e-08,
+          "loss_pde_energy": 1.6872870791706182e-07
+        },
+        "L-BFGS": {
+          "loss_total": 2.2630715368213643e-07,
+          "loss_pde_momentum": 5.75784457650746e-08,
+          "loss_pde_energy": 1.6872870791706182e-07
+        }
+      },
+      "final_total_loss": 2.2630715368213643e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 8.898348864387497e-06,
+          "mae": 8.02678075022616e-06,
+          "relative_l2": 7.0034803433138176e-06,
+          "max_abs_error": 1.3941504253267567e-05,
+          "r2": 0.9999999996236767
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 3.107561385652413e-05,
+          "mae": 2.8022259819789212e-05,
+          "relative_l2": 1.4781144184216202e-05,
+          "max_abs_error": 5.627510694949933e-05,
+          "r2": 0.9999999974944617
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 3.107561385653532e-06,
+          "mae": 2.80222598197995e-06,
+          "relative_l2": 1.4781144184221531e-05,
+          "max_abs_error": 5.627510694938831e-06,
+          "r2": 0.9999999974944617
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 3.107561385652413e-05,
+          "mae": 2.8022259819789212e-05,
+          "relative_l2": 1.4781144184216202e-05,
+          "max_abs_error": 5.627510694949933e-05,
+          "r2": 0.9999999974944617
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.1709578421194077e-05,
+          "mae": 7.31901547026038e-06,
+          "relative_l2": 2.0839922217311294e-05,
+          "max_abs_error": 3.991233819833351e-05,
+          "r2": 0.9999999979095058
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.5",
+      "seed": 3,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 112.27848819992505,
+        "lbfgs_s": 1015.8818212999031,
+        "post_processing_s": 0.013066900195553899,
+        "total_s": 1128.1800025000703
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 5.799565930361978e-07,
+          "loss_pde_momentum": 4.5325925077926036e-07,
+          "loss_pde_energy": 1.2669734225693745e-07
+        },
+        "L-BFGS": {
+          "loss_total": 5.799565930361978e-07,
+          "loss_pde_momentum": 4.5325925077926036e-07,
+          "loss_pde_energy": 1.2669734225693745e-07
+        }
+      },
+      "final_total_loss": 5.799565930361978e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 2.8469498053514888e-05,
+          "mae": 2.5611348693005093e-05,
+          "relative_l2": 2.2407030005282548e-05,
+          "max_abs_error": 4.398158213336778e-05,
+          "r2": 0.9999999961478614
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 7.465857580007677e-05,
+          "mae": 7.078610201524672e-05,
+          "relative_l2": 3.5511419937968126e-05,
+          "max_abs_error": 9.309299534443483e-05,
+          "r2": 0.9999999855382447
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 7.4658575800087e-06,
+          "mae": 7.078610201525362e-06,
+          "relative_l2": 3.5511419937972985e-05,
+          "max_abs_error": 9.309299534437931e-06,
+          "r2": 0.9999999855382447
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 7.465857580007677e-05,
+          "mae": 7.078610201524672e-05,
+          "relative_l2": 3.5511419937968126e-05,
+          "max_abs_error": 9.309299534443483e-05,
+          "r2": 0.9999999855382447
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.6405789582832966e-05,
+          "mae": 1.860371582572597e-05,
+          "relative_l2": 4.6995253048299904e-05,
+          "max_abs_error": 8.998845076702011e-05,
+          "r2": 0.999999989369229
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.9",
+      "seed": 42,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.9,
+      "detailed": true,
+      "timings_s": {
+        "adam_s": 112.22992690000683,
+        "lbfgs_s": 864.4014348001219,
+        "post_processing_s": 1.8482935000211,
+        "total_s": 978.4864236998837
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 2.1122343122400807e-06,
+          "loss_pde_momentum": 1.4441652461107938e-06,
+          "loss_pde_energy": 6.680690661292869e-07
+        },
+        "L-BFGS": {
+          "loss_total": 2.1122343122400807e-06,
+          "loss_pde_momentum": 1.4441652461107938e-06,
+          "loss_pde_energy": 6.680690661292869e-07
+        }
+      },
+      "final_total_loss": 2.1122343122400807e-06,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 6.9495889893636745e-06,
+          "mae": 5.492647738607756e-06,
+          "relative_l2": 1.6537203442473257e-05,
+          "max_abs_error": 1.6488303590911357e-05,
+          "r2": 0.9999999983276118
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 4.522155282091756e-05,
+          "mae": 3.741165780588533e-05,
+          "relative_l2": 5.688393385495733e-05,
+          "max_abs_error": 8.643419092058124e-05,
+          "r2": 0.9999999677743868
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 4.522155282091496e-06,
+          "mae": 3.741165780588468e-06,
+          "relative_l2": 5.6883933854954064e-05,
+          "max_abs_error": 8.643419092055349e-06,
+          "r2": 0.9999999677743868
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 4.522155282091756e-05,
+          "mae": 3.741165780588533e-05,
+          "relative_l2": 5.688393385495733e-05,
+          "max_abs_error": 8.643419092058124e-05,
+          "r2": 0.9999999677743868
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.3389548350686715e-05,
+          "mae": 1.0532753228849539e-05,
+          "relative_l2": 1.4724219292191006e-05,
+          "max_abs_error": 3.445793543499498e-05,
+          "r2": 0.9999999317102185
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.9",
+      "seed": 0,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 112.31995570007712,
+        "lbfgs_s": 961.5135031000245,
+        "post_processing_s": 0.011734999949112535,
+        "total_s": 1073.8543240998406
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 9.087873800013981e-07,
+          "loss_pde_momentum": 5.819718768035207e-07,
+          "loss_pde_energy": 3.2681550319787733e-07
+        },
+        "L-BFGS": {
+          "loss_total": 9.087873800013981e-07,
+          "loss_pde_momentum": 5.819718768035207e-07,
+          "loss_pde_energy": 3.2681550319787733e-07
+        }
+      },
+      "final_total_loss": 9.087873800013981e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 3.3700984105267097e-06,
+          "mae": 2.6533027317895037e-06,
+          "relative_l2": 8.01946749963683e-06,
+          "max_abs_error": 6.816723500724375e-06,
+          "r2": 0.999999999606718
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 3.604934487828992e-05,
+          "mae": 2.5901571986254403e-05,
+          "relative_l2": 4.5346265699718645e-05,
+          "max_abs_error": 0.00010236074237557347,
+          "r2": 0.9999999795211766
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 3.6049344878288855e-06,
+          "mae": 2.590157198625158e-06,
+          "relative_l2": 4.5346265699717296e-05,
+          "max_abs_error": 1.0236074237557347e-05,
+          "r2": 0.9999999795211766
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 3.604934487828992e-05,
+          "mae": 2.5901571986254403e-05,
+          "relative_l2": 4.5346265699718645e-05,
+          "max_abs_error": 0.00010236074237557347,
+          "r2": 0.9999999795211766
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 7.95837405579164e-06,
+          "mae": 5.9962919780363115e-06,
+          "relative_l2": 8.751665234529715e-06,
+          "max_abs_error": 2.3476290020085777e-05,
+          "r2": 0.9999999758747089
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.9",
+      "seed": 1,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 104.95061679999344,
+        "lbfgs_s": 992.7647484000772,
+        "post_processing_s": 0.019468799931928515,
+        "total_s": 1097.7415663001593
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 9.167826578822304e-07,
+          "loss_pde_momentum": 8.750115327368503e-07,
+          "loss_pde_energy": 4.177112514538011e-08
+        },
+        "L-BFGS": {
+          "loss_total": 9.167826578822304e-07,
+          "loss_pde_momentum": 8.750115327368503e-07,
+          "loss_pde_energy": 4.177112514538011e-08
+        }
+      },
+      "final_total_loss": 9.167826578822304e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 4.408636093582279e-06,
+          "mae": 3.547112871124001e-06,
+          "relative_l2": 1.049076601436199e-05,
+          "max_abs_error": 9.785978088705516e-06,
+          "r2": 0.9999999993269809
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 1.4872985654337247e-05,
+          "mae": 1.0659761727034512e-05,
+          "relative_l2": 1.8708643985257184e-05,
+          "max_abs_error": 3.695854798257958e-05,
+          "r2": 0.999999996514167
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 1.4872985654336878e-06,
+          "mae": 1.0659761727035329e-06,
+          "relative_l2": 1.8708643985256717e-05,
+          "max_abs_error": 3.695854798257958e-06,
+          "r2": 0.999999996514167
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 1.4872985654337247e-05,
+          "mae": 1.0659761727034512e-05,
+          "relative_l2": 1.8708643985257184e-05,
+          "max_abs_error": 3.695854798257958e-05,
+          "r2": 0.999999996514167
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 9.39124588728033e-06,
+          "mae": 7.596778153093349e-06,
+          "relative_l2": 1.0327365811716157e-05,
+          "max_abs_error": 2.3399189123640696e-05,
+          "r2": 0.9999999664053368
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.9",
+      "seed": 2,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 105.591541999951,
+        "lbfgs_s": 847.0968378998805,
+        "post_processing_s": 0.011802900116890669,
+        "total_s": 952.7071208998095
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 8.223502641165902e-07,
+          "loss_pde_momentum": 5.913309301448534e-07,
+          "loss_pde_energy": 2.3101933397173685e-07
+        },
+        "L-BFGS": {
+          "loss_total": 8.223502641165902e-07,
+          "loss_pde_momentum": 5.913309301448534e-07,
+          "loss_pde_energy": 2.3101933397173685e-07
+        }
+      },
+      "final_total_loss": 8.223502641165902e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 3.2835806599151065e-06,
+          "mae": 2.7128382777505524e-06,
+          "relative_l2": 7.813590339787662e-06,
+          "max_abs_error": 6.887450316739319e-06,
+          "r2": 0.9999999996266516
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 2.630862588938365e-05,
+          "mae": 1.875137936683245e-05,
+          "relative_l2": 3.3093470735801064e-05,
+          "max_abs_error": 6.828500316702346e-05,
+          "r2": 0.9999999890929682
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 2.630862588938133e-06,
+          "mae": 1.8751379366833777e-06,
+          "relative_l2": 3.309347073579815e-05,
+          "max_abs_error": 6.828500316705122e-06,
+          "r2": 0.9999999890929682
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 2.630862588938365e-05,
+          "mae": 1.875137936683245e-05,
+          "relative_l2": 3.3093470735801064e-05,
+          "max_abs_error": 6.828500316702346e-05,
+          "r2": 0.9999999890929682
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 6.913051800786311e-06,
+          "mae": 5.611245007212348e-06,
+          "relative_l2": 7.6021451976633e-06,
+          "max_abs_error": 1.8463184601635874e-05,
+          "r2": 0.9999999817961399
+        }
+      ]
+    },
+    {
+      "case": "lam5_n0.9",
+      "seed": 3,
+      "relaxation_time": 5.0,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 105.1214107000269,
+        "lbfgs_s": 998.063874799991,
+        "post_processing_s": 0.010993000119924545,
+        "total_s": 1103.2041417001747
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.6556690910450404e-06,
+          "loss_pde_momentum": 1.046995925489653e-06,
+          "loss_pde_energy": 6.086731655553874e-07
+        },
+        "L-BFGS": {
+          "loss_total": 1.6556690910450404e-06,
+          "loss_pde_momentum": 1.046995925489653e-06,
+          "loss_pde_energy": 6.086731655553874e-07
+        }
+      },
+      "final_total_loss": 1.6556690910450404e-06,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 7.274536760413782e-06,
+          "mae": 5.723371467009404e-06,
+          "relative_l2": 1.7310447357510298e-05,
+          "max_abs_error": 1.6925211572593746e-05,
+          "r2": 0.9999999981675609
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 4.871874215352423e-05,
+          "mae": 3.7913521835710434e-05,
+          "relative_l2": 6.128302840754956e-05,
+          "max_abs_error": 0.0001085961943415592,
+          "r2": 0.9999999625973492
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 4.871874215352071e-06,
+          "mae": 3.7913521835707406e-06,
+          "relative_l2": 6.128302840754513e-05,
+          "max_abs_error": 1.0859619434158696e-05,
+          "r2": 0.9999999625973492
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 4.871874215352423e-05,
+          "mae": 3.7913521835710434e-05,
+          "relative_l2": 6.128302840754956e-05,
+          "max_abs_error": 0.0001085961943415592,
+          "r2": 0.9999999625973492
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.1384764388192213e-05,
+          "mae": 8.73241513332596e-06,
+          "relative_l2": 1.2519598350236471e-05,
+          "max_abs_error": 2.9543550790989137e-05,
+          "r2": 0.9999999506289957
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.3",
+      "seed": 42,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.3,
+      "detailed": true,
+      "timings_s": {
+        "adam_s": 106.9535360999871,
+        "lbfgs_s": 824.8311123000458,
+        "post_processing_s": 1.1700743997935206,
+        "total_s": 932.9635608000681
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 6.124709288683996e-07,
+          "loss_pde_momentum": 4.0442750488214514e-07,
+          "loss_pde_energy": 2.0804342398625454e-07
+        },
+        "L-BFGS": {
+          "loss_total": 6.124709288683996e-07,
+          "loss_pde_momentum": 4.0442750488214514e-07,
+          "loss_pde_energy": 2.0804342398625454e-07
+        }
+      },
+      "final_total_loss": 6.124709288683996e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.5884708927785598e-05,
+          "mae": 1.4443324814210292e-05,
+          "relative_l2": 1.5739235284058732e-05,
+          "max_abs_error": 2.793574275061772e-05,
+          "r2": 0.9999999977850696
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 2.898292816343672e-05,
+          "mae": 2.522542255049658e-05,
+          "relative_l2": 1.902253616723318e-05,
+          "max_abs_error": 5.5290413763620094e-05,
+          "r2": 0.9999999955314883
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 2.898292816342394e-06,
+          "mae": 2.522542255048381e-06,
+          "relative_l2": 1.902253616722479e-05,
+          "max_abs_error": 5.529041376350907e-06,
+          "r2": 0.9999999955314883
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 2.898292816343672e-05,
+          "mae": 2.522542255049658e-05,
+          "relative_l2": 1.902253616723318e-05,
+          "max_abs_error": 5.5290413763620094e-05,
+          "r2": 0.9999999955314883
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.721026267105914e-05,
+          "mae": 2.1314707384423247e-05,
+          "relative_l2": 3.90293579924947e-05,
+          "max_abs_error": 6.284528209754559e-05,
+          "r2": 0.9999999897273361
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.3",
+      "seed": 0,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 105.82678150013089,
+        "lbfgs_s": 736.3353164000437,
+        "post_processing_s": 0.013800600077956915,
+        "total_s": 842.1831632000394
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 4.40599563286722e-07,
+          "loss_pde_momentum": 2.0932807638301336e-07,
+          "loss_pde_energy": 2.3127148690370863e-07
+        },
+        "L-BFGS": {
+          "loss_total": 4.40599563286722e-07,
+          "loss_pde_momentum": 2.0932807638301336e-07,
+          "loss_pde_energy": 2.3127148690370863e-07
+        }
+      },
+      "final_total_loss": 4.40599563286722e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.4061064477487937e-05,
+          "mae": 1.2790132410095075e-05,
+          "relative_l2": 1.3932291939475576e-05,
+          "max_abs_error": 2.807795648973599e-05,
+          "r2": 0.9999999982644467
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 3.6543947754665844e-05,
+          "mae": 3.0375310987156037e-05,
+          "relative_l2": 2.3985104746372202e-05,
+          "max_abs_error": 7.083050765954724e-05,
+          "r2": 0.9999999928958963
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 3.6543947754657723e-06,
+          "mae": 3.0375310987148307e-06,
+          "relative_l2": 2.3985104746366872e-05,
+          "max_abs_error": 7.08305076593807e-06,
+          "r2": 0.9999999928958963
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 3.6543947754665844e-05,
+          "mae": 3.0375310987156037e-05,
+          "relative_l2": 2.3985104746372202e-05,
+          "max_abs_error": 7.083050765954724e-05,
+          "r2": 0.9999999928958963
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.154016110168573e-05,
+          "mae": 1.4759145078660393e-05,
+          "relative_l2": 3.089638159751648e-05,
+          "max_abs_error": 6.19020958829708e-05,
+          "r2": 0.9999999935625257
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.3",
+      "seed": 1,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 105.59813380008563,
+        "lbfgs_s": 818.9799920001533,
+        "post_processing_s": 0.013793099904432893,
+        "total_s": 924.598919400014
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.4860428689115594e-06,
+          "loss_pde_momentum": 9.86586379409608e-07,
+          "loss_pde_energy": 4.994564895019515e-07
+        },
+        "L-BFGS": {
+          "loss_total": 1.4860428689115594e-06,
+          "loss_pde_momentum": 9.86586379409608e-07,
+          "loss_pde_energy": 4.994564895019515e-07
+        }
+      },
+      "final_total_loss": 1.4860428689115594e-06,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 7.229461287135937e-05,
+          "mae": 6.655588851905885e-05,
+          "relative_l2": 7.163253207378029e-05,
+          "max_abs_error": 0.00010553735906904116,
+          "r2": 0.9999999541210545
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 0.00016145519973675965,
+          "mae": 0.00015307335205767546,
+          "relative_l2": 0.00010596884341917307,
+          "max_abs_error": 0.0002228685610512482,
+          "r2": 0.999999861330022
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 1.6145519973675213e-05,
+          "mae": 1.5307335205766672e-05,
+          "relative_l2": 0.00010596884341916812,
+          "max_abs_error": 2.2286856105113717e-05,
+          "r2": 0.999999861330022
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 0.00016145519973675965,
+          "mae": 0.00015307335205767546,
+          "relative_l2": 0.00010596884341917307,
+          "max_abs_error": 0.0002228685610512482,
+          "r2": 0.999999861330022
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 4.860081386436072e-05,
+          "mae": 3.488844513820992e-05,
+          "relative_l2": 6.971114487094733e-05,
+          "max_abs_error": 0.00014258943021305814,
+          "r2": 0.9999999672278679
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.3",
+      "seed": 2,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 144.37685480015352,
+        "lbfgs_s": 1419.0541068001185,
+        "post_processing_s": 0.016605700133368373,
+        "total_s": 1563.4549869000912
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.7271805645535458e-07,
+          "loss_pde_momentum": 9.029321114988741e-08,
+          "loss_pde_energy": 8.242484530546716e-08
+        },
+        "L-BFGS": {
+          "loss_total": 1.7271805645535458e-07,
+          "loss_pde_momentum": 9.029321114988741e-08,
+          "loss_pde_energy": 8.242484530546716e-08
+        }
+      },
+      "final_total_loss": 1.7271805645535458e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 3.173391522946828e-06,
+          "mae": 2.093239814103914e-06,
+          "relative_l2": 3.144329307837081e-06,
+          "max_abs_error": 1.1248008316866454e-05,
+          "r2": 0.9999999999116007
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 1.2410648625063743e-05,
+          "mae": 9.106843020501802e-06,
+          "relative_l2": 8.145554203419858e-06,
+          "max_abs_error": 2.9581014455493104e-05,
+          "r2": 0.999999999180654
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 1.2410648625066336e-06,
+          "mae": 9.106843020504343e-07,
+          "relative_l2": 8.14555420342156e-06,
+          "max_abs_error": 2.9581014455437593e-06,
+          "r2": 0.999999999180654
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 1.2410648625063743e-05,
+          "mae": 9.106843020501802e-06,
+          "relative_l2": 8.145554203419858e-06,
+          "max_abs_error": 2.9581014455493104e-05,
+          "r2": 0.999999999180654
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.370657093056202e-05,
+          "mae": 9.688587354921496e-06,
+          "relative_l2": 1.966018006387747e-05,
+          "max_abs_error": 4.1647264536703865e-05,
+          "r2": 0.9999999973933948
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.3",
+      "seed": 3,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 172.64779779990204,
+        "lbfgs_s": 1421.1850427999161,
+        "post_processing_s": 0.017511399928480387,
+        "total_s": 1593.8595781999175
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 4.2830174737029366e-07,
+          "loss_pde_momentum": 1.7103149570270003e-07,
+          "loss_pde_energy": 2.5727025166759366e-07
+        },
+        "L-BFGS": {
+          "loss_total": 4.2830174737029366e-07,
+          "loss_pde_momentum": 1.7103149570270003e-07,
+          "loss_pde_energy": 2.5727025166759366e-07
+        }
+      },
+      "final_total_loss": 4.2830174737029366e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.3535934212165516e-05,
+          "mae": 1.2415383246483376e-05,
+          "relative_l2": 1.3411970866029127e-05,
+          "max_abs_error": 2.0939256311858223e-05,
+          "r2": 0.9999999983916594
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 3.4185327390829594e-05,
+          "mae": 2.8002134423646595e-05,
+          "relative_l2": 2.2437057533101e-05,
+          "max_abs_error": 7.147619094838298e-05,
+          "r2": 0.9999999937833294
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 3.4185327390824958e-06,
+          "mae": 2.800213442364506e-06,
+          "relative_l2": 2.2437057533097954e-05,
+          "max_abs_error": 7.147619094816093e-06,
+          "r2": 0.9999999937833294
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 3.4185327390829594e-05,
+          "mae": 2.8002134423646595e-05,
+          "relative_l2": 2.2437057533101e-05,
+          "max_abs_error": 7.147619094838298e-05,
+          "r2": 0.9999999937833294
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.711595762943286e-05,
+          "mae": 1.3783365168688268e-05,
+          "relative_l2": 2.4550473686313132e-05,
+          "max_abs_error": 3.6359520105111454e-05,
+          "r2": 0.9999999959353794
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.5",
+      "seed": 42,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.5,
+      "detailed": true,
+      "timings_s": {
+        "adam_s": 171.8638958001975,
+        "lbfgs_s": 1650.141556699993,
+        "post_processing_s": 1.4234637999907136,
+        "total_s": 1823.4496049999725
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.2533038182748544e-06,
+          "loss_pde_momentum": 4.433052756158019e-07,
+          "loss_pde_energy": 8.099985426590525e-07
+        },
+        "L-BFGS": {
+          "loss_total": 1.2533038182748544e-06,
+          "loss_pde_momentum": 4.433052756158019e-07,
+          "loss_pde_energy": 8.099985426590525e-07
+        }
+      },
+      "final_total_loss": 1.2533038182748544e-06,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.5134821958179454e-05,
+          "mae": 1.3287162442148163e-05,
+          "relative_l2": 2.5867205811932755e-05,
+          "max_abs_error": 3.137907206274271e-05,
+          "r2": 0.9999999952421779
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 8.063621028564035e-05,
+          "mae": 5.989585895418174e-05,
+          "relative_l2": 7.932273163491113e-05,
+          "max_abs_error": 0.0001774114155987938,
+          "r2": 0.9999999320370828
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 8.063621028563812e-06,
+          "mae": 5.989585895418152e-06,
+          "relative_l2": 7.932273163490896e-05,
+          "max_abs_error": 1.7741141559876605e-05,
+          "r2": 0.9999999320370828
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 8.063621028564035e-05,
+          "mae": 5.989585895418174e-05,
+          "relative_l2": 7.932273163491113e-05,
+          "max_abs_error": 0.0001774114155987938,
+          "r2": 0.9999999320370828
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.8864386432513183e-05,
+          "mae": 1.7357305858538468e-05,
+          "relative_l2": 3.6344375093718065e-05,
+          "max_abs_error": 8.684466171804406e-05,
+          "r2": 0.9999999698268964
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.5",
+      "seed": 0,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 173.25548300007358,
+        "lbfgs_s": 1463.3429066000972,
+        "post_processing_s": 0.019938099896535277,
+        "total_s": 1636.6316269000527
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 5.555720685726784e-07,
+          "loss_pde_momentum": 1.992339765723645e-07,
+          "loss_pde_energy": 3.5633809200031387e-07
+        },
+        "L-BFGS": {
+          "loss_total": 5.555720685726784e-07,
+          "loss_pde_momentum": 1.992339765723645e-07,
+          "loss_pde_energy": 3.5633809200031387e-07
+        }
+      },
+      "final_total_loss": 5.555720685726784e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 8.101245511087904e-06,
+          "mae": 6.986095566125426e-06,
+          "relative_l2": 1.3845989437295927e-05,
+          "max_abs_error": 1.7846448852498753e-05,
+          "r2": 0.9999999986368076
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 4.668082764428848e-05,
+          "mae": 3.6045815034713376e-05,
+          "relative_l2": 4.592044629337991e-05,
+          "max_abs_error": 0.0001128990853684897,
+          "r2": 0.9999999772234003
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 4.668082764429126e-06,
+          "mae": 3.6045815034716746e-06,
+          "relative_l2": 4.592044629338265e-05,
+          "max_abs_error": 1.128990853685452e-05,
+          "r2": 0.9999999772234003
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 4.668082764428848e-05,
+          "mae": 3.6045815034713376e-05,
+          "relative_l2": 4.592044629337991e-05,
+          "max_abs_error": 0.0001128990853684897,
+          "r2": 0.9999999772234003
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.841805172845943e-05,
+          "mae": 1.305983655782711e-05,
+          "relative_l2": 2.3190951315723103e-05,
+          "max_abs_error": 5.427634306220952e-05,
+          "r2": 0.9999999877147867
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.5",
+      "seed": 1,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 171.69325660006143,
+        "lbfgs_s": 1660.76459110016,
+        "post_processing_s": 0.01634069997817278,
+        "total_s": 1832.482405200135
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 2.173828003541793e-07,
+          "loss_pde_momentum": 5.897872693595509e-08,
+          "loss_pde_energy": 1.584040734182242e-07
+        },
+        "L-BFGS": {
+          "loss_total": 2.173828003541793e-07,
+          "loss_pde_momentum": 5.897872693595509e-08,
+          "loss_pde_energy": 1.584040734182242e-07
+        }
+      },
+      "final_total_loss": 2.173828003541793e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 3.5062804793644226e-06,
+          "mae": 2.464600379870127e-06,
+          "relative_l2": 5.992649206227707e-06,
+          "max_abs_error": 1.0444130369768878e-05,
+          "r2": 0.9999999997446435
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 2.919190103535016e-05,
+          "mae": 2.3946689344472767e-05,
+          "relative_l2": 2.871639581693391e-05,
+          "max_abs_error": 6.022609479172658e-05,
+          "r2": 0.9999999910928954
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 2.9191901035352995e-06,
+          "mae": 2.394668934447411e-06,
+          "relative_l2": 2.87163958169367e-05,
+          "max_abs_error": 6.0226094791698825e-06,
+          "r2": 0.9999999910928954
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 2.919190103535016e-05,
+          "mae": 2.3946689344472767e-05,
+          "relative_l2": 2.871639581693391e-05,
+          "max_abs_error": 6.022609479172658e-05,
+          "r2": 0.9999999910928954
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.0004677539229019e-05,
+          "mae": 6.7248826429298585e-06,
+          "relative_l2": 1.2597314480513497e-05,
+          "max_abs_error": 2.926769081501579e-05,
+          "r2": 0.9999999963750542
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.5",
+      "seed": 2,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 114.07579430006444,
+        "lbfgs_s": 954.7181116000284,
+        "post_processing_s": 0.013016499811783433,
+        "total_s": 1068.8207614999264
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 7.03903610879355e-07,
+          "loss_pde_momentum": 3.1360546972927185e-07,
+          "loss_pde_energy": 3.902981411500831e-07
+        },
+        "L-BFGS": {
+          "loss_total": 7.03903610879355e-07,
+          "loss_pde_momentum": 3.1360546972927185e-07,
+          "loss_pde_energy": 3.902981411500831e-07
+        }
+      },
+      "final_total_loss": 7.03903610879355e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 8.66291693853954e-06,
+          "mae": 7.261604522588543e-06,
+          "relative_l2": 1.4805952524586922e-05,
+          "max_abs_error": 1.875698935027703e-05,
+          "r2": 0.9999999984412306
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 4.665961528616648e-05,
+          "mae": 3.614387561703223e-05,
+          "relative_l2": 4.58995794621549e-05,
+          "max_abs_error": 9.731096345744206e-05,
+          "r2": 0.9999999772440955
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 4.665961528616892e-06,
+          "mae": 3.6143875617033975e-06,
+          "relative_l2": 4.5899579462157296e-05,
+          "max_abs_error": 9.731096345749757e-06,
+          "r2": 0.9999999772440955
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 4.665961528616648e-05,
+          "mae": 3.614387561703223e-05,
+          "relative_l2": 4.58995794621549e-05,
+          "max_abs_error": 9.731096345744206e-05,
+          "r2": 0.9999999772440955
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.1818619560399e-05,
+          "mae": 1.7574467870282805e-05,
+          "relative_l2": 2.7472750726377765e-05,
+          "max_abs_error": 4.8468135741219776e-05,
+          "r2": 0.9999999827594998
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.5",
+      "seed": 3,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 118.49327070009895,
+        "lbfgs_s": 925.2180104998406,
+        "post_processing_s": 0.016607300145551562,
+        "total_s": 1043.7350848000497
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 7.941807827775436e-07,
+          "loss_pde_momentum": 2.8797030525285765e-07,
+          "loss_pde_energy": 5.06210477524686e-07
+        },
+        "L-BFGS": {
+          "loss_total": 7.941807827775436e-07,
+          "loss_pde_momentum": 2.8797030525285765e-07,
+          "loss_pde_energy": 5.06210477524686e-07
+        }
+      },
+      "final_total_loss": 7.941807827775436e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.1299050341220706e-05,
+          "mae": 9.965149032767664e-06,
+          "relative_l2": 1.9311417171827927e-05,
+          "max_abs_error": 2.286089548486636e-05,
+          "r2": 0.9999999973482202
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 5.110932989790636e-05,
+          "mae": 3.952180720693313e-05,
+          "relative_l2": 5.027681292524388e-05,
+          "max_abs_error": 0.00012285145322254998,
+          "r2": 0.9999999726968869
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 5.110932989790142e-06,
+          "mae": 3.9521807206930606e-06,
+          "relative_l2": 5.0276812925239024e-05,
+          "max_abs_error": 1.2285145322254998e-05,
+          "r2": 0.9999999726968869
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 5.110932989790636e-05,
+          "mae": 3.952180720693313e-05,
+          "relative_l2": 5.027681292524388e-05,
+          "max_abs_error": 0.00012285145322254998,
+          "r2": 0.9999999726968869
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.2381530736236892e-05,
+          "mae": 1.7666571725075428e-05,
+          "relative_l2": 2.818153609990136e-05,
+          "max_abs_error": 5.3040632468581705e-05,
+          "r2": 0.9999999818584289
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.9",
+      "seed": 42,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.9,
+      "detailed": true,
+      "timings_s": {
+        "adam_s": 121.76460859994404,
+        "lbfgs_s": 697.8951986001339,
+        "post_processing_s": 2.0491665999870747,
+        "total_s": 821.7171576998662
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.2223635360364218e-06,
+          "loss_pde_momentum": 4.6211045834840876e-07,
+          "loss_pde_energy": 7.60253077688013e-07
+        },
+        "L-BFGS": {
+          "loss_total": 1.2223635360364218e-06,
+          "loss_pde_momentum": 4.6211045834840876e-07,
+          "loss_pde_energy": 7.60253077688013e-07
+        }
+      },
+      "final_total_loss": 1.2223635360364218e-06,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 7.999008612476762e-06,
+          "mae": 6.03690009178688e-06,
+          "relative_l2": 2.065110736508153e-05,
+          "max_abs_error": 1.9206140764449486e-05,
+          "r2": 0.9999999974198676
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 6.822205303900603e-05,
+          "mae": 5.608254177154586e-05,
+          "relative_l2": 9.255327047783892e-05,
+          "max_abs_error": 0.00014192351268416115,
+          "r2": 0.9999999152846367
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 6.822205303900112e-06,
+          "mae": 5.60825417715406e-06,
+          "relative_l2": 9.255327047783224e-05,
+          "max_abs_error": 1.4192351268413339e-05,
+          "r2": 0.9999999152846367
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 6.822205303900603e-05,
+          "mae": 5.608254177154586e-05,
+          "relative_l2": 9.255327047783892e-05,
+          "max_abs_error": 0.00014192351268416115,
+          "r2": 0.9999999152846367
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 5.330176822839514e-06,
+          "mae": 4.203189921553344e-06,
+          "relative_l2": 5.532434998522818e-06,
+          "max_abs_error": 1.3209216416121272e-05,
+          "r2": 0.9999999598540481
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.9",
+      "seed": 0,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 111.39845580002293,
+        "lbfgs_s": 989.0910671001766,
+        "post_processing_s": 0.015370100038126111,
+        "total_s": 1100.5132794000674
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 4.4873886307011187e-07,
+          "loss_pde_momentum": 3.0370874209290496e-07,
+          "loss_pde_energy": 1.450301209772069e-07
+        },
+        "L-BFGS": {
+          "loss_total": 4.4873886307011187e-07,
+          "loss_pde_momentum": 3.0370874209290496e-07,
+          "loss_pde_energy": 1.450301209772069e-07
+        }
+      },
+      "final_total_loss": 4.4873886307011187e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 5.243996013128429e-06,
+          "mae": 4.07298600318343e-06,
+          "relative_l2": 1.3538468319718822e-05,
+          "max_abs_error": 1.1754376967265667e-05,
+          "r2": 0.9999999988910949
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 3.0187721164466625e-05,
+          "mae": 2.4455043258985568e-05,
+          "relative_l2": 4.095409325261738e-05,
+          "max_abs_error": 6.651272429625266e-05,
+          "r2": 0.9999999834127928
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 3.018772116446637e-06,
+          "mae": 2.445504325898452e-06,
+          "relative_l2": 4.095409325261702e-05,
+          "max_abs_error": 6.651272429616939e-06,
+          "r2": 0.9999999834127928
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 3.0187721164466625e-05,
+          "mae": 2.4455043258985568e-05,
+          "relative_l2": 4.095409325261738e-05,
+          "max_abs_error": 6.651272429625266e-05,
+          "r2": 0.9999999834127928
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 4.144532506971152e-06,
+          "mae": 3.2155473159257733e-06,
+          "relative_l2": 4.301800382274691e-06,
+          "max_abs_error": 1.0449913759424945e-05,
+          "r2": 0.9999999757277729
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.9",
+      "seed": 1,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 115.57779349992052,
+        "lbfgs_s": 1009.2495118998922,
+        "post_processing_s": 0.016631699865683913,
+        "total_s": 1124.8535058000125
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 8.264616319293528e-07,
+          "loss_pde_momentum": 7.683206534752697e-07,
+          "loss_pde_energy": 5.814097845408308e-08
+        },
+        "L-BFGS": {
+          "loss_total": 8.264616319293528e-07,
+          "loss_pde_momentum": 7.683206534752697e-07,
+          "loss_pde_energy": 5.814097845408308e-08
+        }
+      },
+      "final_total_loss": 8.264616319293528e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 8.727159598269194e-06,
+          "mae": 7.078410880512214e-06,
+          "relative_l2": 2.2530980848669822e-05,
+          "max_abs_error": 1.781408971951448e-05,
+          "r2": 0.9999999969287476
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 3.160382248591722e-05,
+          "mae": 2.394317233149195e-05,
+          "relative_l2": 4.2875243420193045e-05,
+          "max_abs_error": 6.704874411700423e-05,
+          "r2": 0.9999999818200855
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 3.1603822485914008e-06,
+          "mae": 2.394317233149088e-06,
+          "relative_l2": 4.287524342018868e-05,
+          "max_abs_error": 6.704874411692097e-06,
+          "r2": 0.9999999818200855
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 3.160382248591722e-05,
+          "mae": 2.394317233149195e-05,
+          "relative_l2": 4.2875243420193045e-05,
+          "max_abs_error": 6.704874411700423e-05,
+          "r2": 0.9999999818200855
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 6.590519853931935e-06,
+          "mae": 5.430417256139676e-06,
+          "relative_l2": 6.840602837436177e-06,
+          "max_abs_error": 1.4505159120714595e-05,
+          "r2": 0.9999999386241001
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.9",
+      "seed": 2,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 121.15921070007607,
+        "lbfgs_s": 949.3925280000549,
+        "post_processing_s": 0.029304299969226122,
+        "total_s": 1070.589159999974
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.8162377049495024e-06,
+          "loss_pde_momentum": 1.5588212588760235e-06,
+          "loss_pde_energy": 2.5741644607347895e-07
+        },
+        "L-BFGS": {
+          "loss_total": 1.8162377049495024e-06,
+          "loss_pde_momentum": 1.5588212588760235e-06,
+          "loss_pde_energy": 2.5741644607347895e-07
+        }
+      },
+      "final_total_loss": 1.8162377049495024e-06,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.3479714364420468e-05,
+          "mae": 1.0701996441074673e-05,
+          "relative_l2": 3.480069119516621e-05,
+          "max_abs_error": 2.8928851358911434e-05,
+          "r2": 0.999999992672918
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 4.56536438530237e-05,
+          "mae": 3.742799024384461e-05,
+          "relative_l2": 6.193589696592621e-05,
+          "max_abs_error": 0.00010081415481466571,
+          "r2": 0.9999999620629548
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 4.565364385301486e-06,
+          "mae": 3.7427990243838985e-06,
+          "relative_l2": 6.193589696591422e-05,
+          "max_abs_error": 1.0081415481463796e-05,
+          "r2": 0.9999999620629548
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 4.56536438530237e-05,
+          "mae": 3.742799024384461e-05,
+          "relative_l2": 6.193589696592621e-05,
+          "max_abs_error": 0.00010081415481466571,
+          "r2": 0.9999999620629548
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 9.509981544937376e-06,
+          "mae": 7.987217295330209e-06,
+          "relative_l2": 9.870846030674314e-06,
+          "max_abs_error": 1.972009799255936e-05,
+          "r2": 0.999999872203819
+        }
+      ]
+    },
+    {
+      "case": "lam2_n0.9",
+      "seed": 3,
+      "relaxation_time": 2.0,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 119.09653099998832,
+        "lbfgs_s": 863.4506109000649,
+        "post_processing_s": 0.013499199878424406,
+        "total_s": 982.5683625000529
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.346758139844204e-06,
+          "loss_pde_momentum": 8.972145227883892e-07,
+          "loss_pde_energy": 4.495436170558148e-07
+        },
+        "L-BFGS": {
+          "loss_total": 1.346758139844204e-06,
+          "loss_pde_momentum": 8.972145227883892e-07,
+          "loss_pde_energy": 4.495436170558148e-07
+        }
+      },
+      "final_total_loss": 1.346758139844204e-06,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 9.459948361243643e-06,
+          "mae": 7.6085005400060715e-06,
+          "relative_l2": 2.442282772035671e-05,
+          "max_abs_error": 1.9880107450298556e-05,
+          "r2": 0.9999999963913297
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 5.44251014171808e-05,
+          "mae": 4.4659327921870316e-05,
+          "relative_l2": 7.383567201309688e-05,
+          "max_abs_error": 0.00012329110679931699,
+          "r2": 0.9999999460848147
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 5.442510141717934e-06,
+          "mae": 4.465932792186815e-06,
+          "relative_l2": 7.383567201309491e-05,
+          "max_abs_error": 1.23291106799428e-05,
+          "r2": 0.9999999460848147
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 5.44251014171808e-05,
+          "mae": 4.4659327921870316e-05,
+          "relative_l2": 7.383567201309688e-05,
+          "max_abs_error": 0.00012329110679931699,
+          "r2": 0.9999999460848147
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 6.9943700921651204e-06,
+          "mae": 5.864773732738098e-06,
+          "relative_l2": 7.259777522709152e-06,
+          "max_abs_error": 1.4620039980983712e-05,
+          "r2": 0.9999999308717211
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.3",
+      "seed": 42,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.3,
+      "detailed": true,
+      "timings_s": {
+        "adam_s": 114.59137100004591,
+        "lbfgs_s": 748.8723748999182,
+        "post_processing_s": 1.723944100085646,
+        "total_s": 865.2157024000771
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 2.268231778322435e-07,
+          "loss_pde_momentum": 7.847206879612108e-08,
+          "loss_pde_energy": 1.4835110903612244e-07
+        },
+        "L-BFGS": {
+          "loss_total": 2.268231778322435e-07,
+          "loss_pde_momentum": 7.847206879612108e-08,
+          "loss_pde_energy": 1.4835110903612244e-07
+        }
+      },
+      "final_total_loss": 2.268231778322435e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 3.0217552525969116e-06,
+          "mae": 2.608699767598874e-06,
+          "relative_l2": 7.870016348298772e-06,
+          "max_abs_error": 5.15837315467893e-06,
+          "r2": 0.9999999996234057
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 2.7033661853473906e-05,
+          "mae": 2.3548668663393022e-05,
+          "relative_l2": 3.709488419128981e-05,
+          "max_abs_error": 4.4598369649651026e-05,
+          "r2": 0.99999998637556
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 2.7033661853476074e-06,
+          "mae": 2.354866866339607e-06,
+          "relative_l2": 3.7094884191292775e-05,
+          "max_abs_error": 4.459836964967878e-06,
+          "r2": 0.99999998637556
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 2.7033661853473906e-05,
+          "mae": 2.3548668663393022e-05,
+          "relative_l2": 3.709488419128981e-05,
+          "max_abs_error": 4.4598369649651026e-05,
+          "r2": 0.99999998637556
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.2545482286969144e-06,
+          "mae": 1.8004858865656598e-06,
+          "relative_l2": 2.3212148172955812e-06,
+          "max_abs_error": 4.842146318351226e-06,
+          "r2": 0.9999999924878837
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.3",
+      "seed": 0,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 120.58771870005876,
+        "lbfgs_s": 704.0738619000185,
+        "post_processing_s": 0.01767540001310408,
+        "total_s": 824.6917178998701
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 2.0836142130859762e-07,
+          "loss_pde_momentum": 2.9950123660926133e-08,
+          "loss_pde_energy": 1.784112976476715e-07
+        },
+        "L-BFGS": {
+          "loss_total": 2.0836142130859762e-07,
+          "loss_pde_momentum": 2.9950123660926133e-08,
+          "loss_pde_energy": 1.784112976476715e-07
+        }
+      },
+      "final_total_loss": 2.0836142130859762e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.896586931285193e-06,
+          "mae": 1.5894063235516782e-06,
+          "relative_l2": 4.9395695241554205e-06,
+          "max_abs_error": 3.927702173889269e-06,
+          "r2": 0.9999999998516456
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 4.6210340039267997e-05,
+          "mae": 3.828701242579265e-05,
+          "relative_l2": 6.340862075910345e-05,
+          "max_abs_error": 8.73696411726188e-05,
+          "r2": 0.9999999601904529
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 4.621034003926604e-06,
+          "mae": 3.828701242579296e-06,
+          "relative_l2": 6.340862075910075e-05,
+          "max_abs_error": 8.736964117253554e-06,
+          "r2": 0.9999999601904529
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 4.6210340039267997e-05,
+          "mae": 3.828701242579265e-05,
+          "relative_l2": 6.340862075910345e-05,
+          "max_abs_error": 8.73696411726188e-05,
+          "r2": 0.9999999601904529
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.3459382063310906e-06,
+          "mae": 9.943777289037855e-07,
+          "relative_l2": 1.3857373587903683e-06,
+          "max_abs_error": 3.616042648646456e-06,
+          "r2": 0.9999999973227219
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.3",
+      "seed": 1,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 114.79540180019103,
+        "lbfgs_s": 885.5894937000703,
+        "post_processing_s": 0.01704379986040294,
+        "total_s": 1000.4110763999633
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 6.190086750927893e-08,
+          "loss_pde_momentum": 4.0461837086104174e-08,
+          "loss_pde_energy": 2.143903042317476e-08
+        },
+        "L-BFGS": {
+          "loss_total": 6.190086750927893e-08,
+          "loss_pde_momentum": 4.0461837086104174e-08,
+          "loss_pde_energy": 2.143903042317476e-08
+        }
+      },
+      "final_total_loss": 6.190086750927893e-08,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 2.5360350973753056e-06,
+          "mae": 2.0912642230421413e-06,
+          "relative_l2": 6.604981544766265e-06,
+          "max_abs_error": 4.772873652414411e-06,
+          "r2": 0.9999999997347437
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 1.223569199054023e-05,
+          "mae": 1.002037290155139e-05,
+          "relative_l2": 1.6789496733719666e-05,
+          "max_abs_error": 2.4099227796559042e-05,
+          "r2": 0.9999999972089605
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 1.2235691990545949e-06,
+          "mae": 1.0020372901555774e-06,
+          "relative_l2": 1.6789496733727506e-05,
+          "max_abs_error": 2.4099227796531286e-06,
+          "r2": 0.9999999972089605
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 1.223569199054023e-05,
+          "mae": 1.002037290155139e-05,
+          "relative_l2": 1.6789496733719666e-05,
+          "max_abs_error": 2.4099227796559042e-05,
+          "r2": 0.9999999972089605
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.6884917528798944e-06,
+          "mae": 1.244402741826584e-06,
+          "relative_l2": 1.7384201525515866e-06,
+          "max_abs_error": 4.403109233663827e-06,
+          "r2": 0.9999999957865181
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.3",
+      "seed": 2,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 114.7182376999408,
+        "lbfgs_s": 812.0275246999227,
+        "post_processing_s": 0.01669479999691248,
+        "total_s": 926.7720561998431
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 8.23096330360694e-08,
+          "loss_pde_momentum": 5.88144661933899e-09,
+          "loss_pde_energy": 7.64281864167304e-08
+        },
+        "L-BFGS": {
+          "loss_total": 8.23096330360694e-08,
+          "loss_pde_momentum": 5.88144661933899e-09,
+          "loss_pde_energy": 7.64281864167304e-08
+        }
+      },
+      "final_total_loss": 8.23096330360694e-08,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 7.136343253701031e-07,
+          "mae": 5.926783523084946e-07,
+          "relative_l2": 1.8586263075221557e-06,
+          "max_abs_error": 1.4658908605857945e-06,
+          "r2": 0.9999999999789958
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 2.456721443327844e-05,
+          "mae": 2.0681465379673312e-05,
+          "relative_l2": 3.3710489509135437e-05,
+          "max_abs_error": 4.4889809465153974e-05,
+          "r2": 0.9999999887482327
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 2.456721443327552e-06,
+          "mae": 2.0681465379671197e-06,
+          "relative_l2": 3.371048950913142e-05,
+          "max_abs_error": 4.488980946515397e-06,
+          "r2": 0.9999999887482327
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 2.456721443327844e-05,
+          "mae": 2.0681465379673312e-05,
+          "relative_l2": 3.3710489509135437e-05,
+          "max_abs_error": 4.4889809465153974e-05,
+          "r2": 0.9999999887482327
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 5.86616066019725e-07,
+          "mae": 4.4753554512070265e-07,
+          "relative_l2": 6.039621983583129e-07,
+          "max_abs_error": 1.4588905973278443e-06,
+          "r2": 0.9999999994914295
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.3",
+      "seed": 3,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.3,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 115.2177657999564,
+        "lbfgs_s": 747.8783941001166,
+        "post_processing_s": 0.014972100034356117,
+        "total_s": 863.1246577000711
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 8.153855358620619e-08,
+          "loss_pde_momentum": 4.6507905548207176e-08,
+          "loss_pde_energy": 3.503064803799901e-08
+        },
+        "L-BFGS": {
+          "loss_total": 8.153855358620619e-08,
+          "loss_pde_momentum": 4.6507905548207176e-08,
+          "loss_pde_energy": 3.503064803799901e-08
+        }
+      },
+      "final_total_loss": 8.153855358620619e-08,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 2.063853426764716e-06,
+          "mae": 1.7273185446935215e-06,
+          "relative_l2": 5.37520707382632e-06,
+          "max_abs_error": 3.903792406445561e-06,
+          "r2": 0.9999999998243239
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 1.1991284036939276e-05,
+          "mae": 1.015541634041852e-05,
+          "relative_l2": 1.6454126528107194e-05,
+          "max_abs_error": 2.4988094022293517e-05,
+          "r2": 0.999999997319349
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 1.199128403693631e-06,
+          "mae": 1.0155416340414306e-06,
+          "relative_l2": 1.645412652810312e-05,
+          "max_abs_error": 2.4988094022293517e-06,
+          "r2": 0.999999997319349
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 1.1991284036939276e-05,
+          "mae": 1.015541634041852e-05,
+          "relative_l2": 1.6454126528107194e-05,
+          "max_abs_error": 2.4988094022293517e-05,
+          "r2": 0.999999997319349
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.4807543348060203e-06,
+          "mae": 1.235547470500174e-06,
+          "relative_l2": 1.5245399761144176e-06,
+          "max_abs_error": 2.824511249555073e-06,
+          "r2": 0.9999999967595206
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.5",
+      "seed": 42,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.5,
+      "detailed": true,
+      "timings_s": {
+        "adam_s": 114.95910719991662,
+        "lbfgs_s": 803.0018875999376,
+        "post_processing_s": 1.395770999835804,
+        "total_s": 919.3665643001441
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 1.0453045557056929e-07,
+          "loss_pde_momentum": 1.7317793394890274e-08,
+          "loss_pde_energy": 8.721266217567901e-08
+        },
+        "L-BFGS": {
+          "loss_total": 1.0453045557056929e-07,
+          "loss_pde_momentum": 1.7317793394890274e-08,
+          "loss_pde_energy": 8.721266217567901e-08
+        }
+      },
+      "final_total_loss": 1.0453045557056929e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.648064642843512e-06,
+          "mae": 1.30578371288007e-06,
+          "relative_l2": 4.36180491272327e-06,
+          "max_abs_error": 3.4360981027159454e-06,
+          "r2": 0.999999999885287
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 2.927442703407116e-05,
+          "mae": 2.4527597346287513e-05,
+          "relative_l2": 4.063597490500991e-05,
+          "max_abs_error": 5.324059621159005e-05,
+          "r2": 0.9999999837153517
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 2.927442703406596e-06,
+          "mae": 2.452759734628229e-06,
+          "relative_l2": 4.063597490500267e-05,
+          "max_abs_error": 5.32405962115623e-06,
+          "r2": 0.9999999837153517
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 2.927442703407116e-05,
+          "mae": 2.4527597346287513e-05,
+          "relative_l2": 4.063597490500991e-05,
+          "max_abs_error": 5.324059621159005e-05,
+          "r2": 0.9999999837153517
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 7.682382965019203e-07,
+          "mae": 5.330012268303424e-07,
+          "relative_l2": 7.840291764094904e-07,
+          "max_abs_error": 2.026180430436675e-06,
+          "r2": 0.9999999981779779
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.5",
+      "seed": 0,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 118.35918250004761,
+        "lbfgs_s": 908.095639300067,
+        "post_processing_s": 0.013210100121796131,
+        "total_s": 1026.4749878998846
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 5.687460477594253e-08,
+          "loss_pde_momentum": 5.155134414029366e-09,
+          "loss_pde_energy": 5.171947036191316e-08
+        },
+        "L-BFGS": {
+          "loss_total": 5.687460477594253e-08,
+          "loss_pde_momentum": 5.155134414029366e-09,
+          "loss_pde_energy": 5.171947036191316e-08
+        }
+      },
+      "final_total_loss": 5.687460477594253e-08,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.2186778938407654e-06,
+          "mae": 8.881840160768552e-07,
+          "relative_l2": 3.225380295284103e-06,
+          "max_abs_error": 2.587314341884195e-06,
+          "r2": 0.9999999999372747
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 1.6271651808580922e-05,
+          "mae": 1.382863794665703e-05,
+          "relative_l2": 2.2586759214347603e-05,
+          "max_abs_error": 3.2620163402663493e-05,
+          "r2": 0.9999999949688779
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 1.6271651808580545e-06,
+          "mae": 1.3828637946656814e-06,
+          "relative_l2": 2.2586759214347078e-05,
+          "max_abs_error": 3.2620163402663493e-06,
+          "r2": 0.9999999949688779
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 1.6271651808580922e-05,
+          "mae": 1.382863794665703e-05,
+          "relative_l2": 2.2586759214347603e-05,
+          "max_abs_error": 3.2620163402663493e-05,
+          "r2": 0.9999999949688779
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 3.9589768022547736e-07,
+          "mae": 3.1729980123373856e-07,
+          "relative_l2": 4.04035223944128e-07,
+          "max_abs_error": 9.850523216003992e-07,
+          "r2": 0.9999999995161312
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.5",
+      "seed": 1,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 107.99882650002837,
+        "lbfgs_s": 958.8151389001869,
+        "post_processing_s": 0.018691400066018105,
+        "total_s": 1066.8407894999254
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 2.3786854642502244e-08,
+          "loss_pde_momentum": 2.0170479307704284e-08,
+          "loss_pde_energy": 3.6163753347979598e-09
+        },
+        "L-BFGS": {
+          "loss_total": 2.3786854642502244e-08,
+          "loss_pde_momentum": 2.0170479307704284e-08,
+          "loss_pde_energy": 3.6163753347979598e-09
+        }
+      },
+      "final_total_loss": 2.3786854642502244e-08,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 2.1747234641820317e-06,
+          "mae": 1.8533090785510826e-06,
+          "relative_l2": 5.755671982330395e-06,
+          "max_abs_error": 4.127350707150423e-06,
+          "r2": 0.9999999998002566
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 8.008493485111633e-06,
+          "mae": 6.560581438713384e-06,
+          "relative_l2": 1.1116628855252234e-05,
+          "max_abs_error": 1.7895878629103912e-05,
+          "r2": 0.999999998781282
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 8.008493485109827e-07,
+          "mae": 6.56058143871246e-07,
+          "relative_l2": 1.111662885524973e-05,
+          "max_abs_error": 1.789587862899289e-06,
+          "r2": 0.999999998781282
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 8.008493485111633e-06,
+          "mae": 6.560581438713384e-06,
+          "relative_l2": 1.1116628855252234e-05,
+          "max_abs_error": 1.7895878629103912e-05,
+          "r2": 0.999999998781282
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 9.400015715157983e-07,
+          "mae": 7.596676540570852e-07,
+          "relative_l2": 9.593229877955138e-07,
+          "max_abs_error": 2.001207749291467e-06,
+          "r2": 0.99999999727216
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.5",
+      "seed": 2,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 114.87192400009371,
+        "lbfgs_s": 887.7482056999579,
+        "post_processing_s": 0.017799900146201253,
+        "total_s": 1002.6453227000311
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 9.110680777913871e-08,
+          "loss_pde_momentum": 1.8000154322342804e-08,
+          "loss_pde_energy": 7.310665345679591e-08
+        },
+        "L-BFGS": {
+          "loss_total": 9.110680777913871e-08,
+          "loss_pde_momentum": 1.8000154322342804e-08,
+          "loss_pde_energy": 7.310665345679591e-08
+        }
+      },
+      "final_total_loss": 9.110680777913871e-08,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.6884720200665846e-06,
+          "mae": 1.330184963292172e-06,
+          "relative_l2": 4.468747985161111e-06,
+          "max_abs_error": 3.495059909541798e-06,
+          "r2": 0.9999999998795929
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 3.0573255944611296e-05,
+          "mae": 2.520056378080969e-05,
+          "relative_l2": 4.2438885648683307e-05,
+          "max_abs_error": 5.742047220969049e-05,
+          "r2": 0.9999999822382825
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 3.0573255944610958e-06,
+          "mae": 2.5200563780809905e-06,
+          "relative_l2": 4.2438885648682846e-05,
+          "max_abs_error": 5.742047220966273e-06,
+          "r2": 0.9999999822382825
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 3.0573255944611296e-05,
+          "mae": 2.520056378080969e-05,
+          "relative_l2": 4.2438885648683307e-05,
+          "max_abs_error": 5.742047220969049e-05,
+          "r2": 0.9999999822382825
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 8.304385063436805e-07,
+          "mae": 5.424227875766532e-07,
+          "relative_l2": 8.475078906532168e-07,
+          "max_abs_error": 2.2355001321194834e-06,
+          "r2": 0.999999997870995
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.5",
+      "seed": 3,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.5,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 114.85835939995013,
+        "lbfgs_s": 722.1865928999614,
+        "post_processing_s": 0.028645100072026253,
+        "total_s": 837.081263900036
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 4.3928861615586006e-07,
+          "loss_pde_momentum": 1.7412523389877803e-08,
+          "loss_pde_energy": 4.2187609276598225e-07
+        },
+        "L-BFGS": {
+          "loss_total": 4.3928861615586006e-07,
+          "loss_pde_momentum": 1.7412523389877803e-08,
+          "loss_pde_energy": 4.2187609276598225e-07
+        }
+      },
+      "final_total_loss": 4.3928861615586006e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.9161813790880557e-06,
+          "mae": 1.5052399595784956e-06,
+          "relative_l2": 5.071408690956757e-06,
+          "max_abs_error": 4.106547440096975e-06,
+          "r2": 0.9999999998449265
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 6.249388025613717e-05,
+          "mae": 5.188601248572754e-05,
+          "relative_l2": 8.674805989710669e-05,
+          "max_abs_error": 0.0001189835972233988,
+          "r2": 0.9999999257875863
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 6.249388025613456e-06,
+          "mae": 5.188601248572613e-06,
+          "relative_l2": 8.674805989710304e-05,
+          "max_abs_error": 1.1898359722331553e-05,
+          "r2": 0.9999999257875863
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 6.249388025613717e-05,
+          "mae": 5.188601248572754e-05,
+          "relative_l2": 8.674805989710669e-05,
+          "max_abs_error": 0.0001189835972233988,
+          "r2": 0.9999999257875863
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 6.415116607268904e-07,
+          "mae": 4.958332416339581e-07,
+          "relative_l2": 6.546977172408262e-07,
+          "max_abs_error": 1.5655003662295996e-06,
+          "r2": 0.9999999987295112
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.9",
+      "seed": 42,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.9,
+      "detailed": true,
+      "timings_s": {
+        "adam_s": 115.54954879987054,
+        "lbfgs_s": 664.0893274999689,
+        "post_processing_s": 2.091293199919164,
+        "total_s": 781.7369739999995
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 9.189070094497969e-08,
+          "loss_pde_momentum": 1.43937719295947e-08,
+          "loss_pde_energy": 7.749692901538499e-08
+        },
+        "L-BFGS": {
+          "loss_total": 9.189070094497969e-08,
+          "loss_pde_momentum": 1.43937719295947e-08,
+          "loss_pde_energy": 7.749692901538499e-08
+        }
+      },
+      "final_total_loss": 9.189070094497969e-08,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.9761673090394456e-06,
+          "mae": 1.6499381761530085e-06,
+          "relative_l2": 5.382932269346902e-06,
+          "max_abs_error": 3.830583366504214e-06,
+          "r2": 0.9999999998277566
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 3.137384353795454e-05,
+          "mae": 2.540613393293009e-05,
+          "relative_l2": 4.4481038994306803e-05,
+          "max_abs_error": 6.668498498163533e-05,
+          "r2": 0.9999999806222406
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 3.1373843537962255e-06,
+          "mae": 2.5406133932937058e-06,
+          "relative_l2": 4.4481038994317734e-05,
+          "max_abs_error": 6.6684984981607576e-06,
+          "r2": 0.9999999806222406
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 3.137384353795454e-05,
+          "mae": 2.540613393293009e-05,
+          "relative_l2": 4.4481038994306803e-05,
+          "max_abs_error": 6.668498498163533e-05,
+          "r2": 0.9999999806222406
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.4772996720888534e-07,
+          "mae": 1.2313766371678238e-07,
+          "relative_l2": 1.4830775986260933e-07,
+          "max_abs_error": 2.9080657681923583e-07,
+          "r2": 0.9999999981141059
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.9",
+      "seed": 0,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 115.21135240001604,
+        "lbfgs_s": 898.4350968000945,
+        "post_processing_s": 0.013610299909487367,
+        "total_s": 1013.6688624999952
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 8.510893483829757e-09,
+          "loss_pde_momentum": 1.253536939601612e-09,
+          "loss_pde_energy": 7.257356544228145e-09
+        },
+        "L-BFGS": {
+          "loss_total": 8.510893483829757e-09,
+          "loss_pde_momentum": 1.253536939601612e-09,
+          "loss_pde_energy": 7.257356544228145e-09
+        }
+      },
+      "final_total_loss": 8.510893483829757e-09,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 4.913187326110196e-07,
+          "mae": 3.839116572029634e-07,
+          "relative_l2": 1.3383155607366085e-06,
+          "max_abs_error": 1.0251264163652074e-06,
+          "r2": 0.9999999999893532
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 8.997241018893332e-06,
+          "mae": 7.302493116349028e-06,
+          "relative_l2": 1.275605993631034e-05,
+          "max_abs_error": 1.6815485473165026e-05,
+          "r2": 0.9999999984063725
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 8.997241018888522e-07,
+          "mae": 7.30249311634456e-07,
+          "relative_l2": 1.2756059936303522e-05,
+          "max_abs_error": 1.6815485473220537e-06,
+          "r2": 0.9999999984063725
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 8.997241018893332e-06,
+          "mae": 7.302493116349028e-06,
+          "relative_l2": 1.275605993631034e-05,
+          "max_abs_error": 1.6815485473165026e-05,
+          "r2": 0.9999999984063725
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 3.797323927687554e-08,
+          "mae": 2.9592372216565004e-08,
+          "relative_l2": 3.812175794987612e-08,
+          "max_abs_error": 9.113503263158407e-08,
+          "r2": 0.999999999875395
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.9",
+      "seed": 1,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 114.2248341999948,
+        "lbfgs_s": 593.5743607999757,
+        "post_processing_s": 0.0139896001201123,
+        "total_s": 707.8230048001278
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 8.665290029644403e-07,
+          "loss_pde_momentum": 1.1253374987236327e-07,
+          "loss_pde_energy": 7.539952530920771e-07
+        },
+        "L-BFGS": {
+          "loss_total": 8.665290029644403e-07,
+          "loss_pde_momentum": 1.1253374987236327e-07,
+          "loss_pde_energy": 7.539952530920771e-07
+        }
+      },
+      "final_total_loss": 8.665290029644403e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 6.5079777572068775e-06,
+          "mae": 5.2668673504332665e-06,
+          "relative_l2": 1.772724572318159e-05,
+          "max_abs_error": 1.1734024434773005e-05,
+          "r2": 0.9999999981319546
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 0.00012284764462587575,
+          "mae": 0.0001056327477154909,
+          "relative_l2": 0.00017417027226363803,
+          "max_abs_error": 0.00022641925420563425,
+          "r2": 0.9999997029006001
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 1.2284764462587132e-05,
+          "mae": 1.0563274771548895e-05,
+          "relative_l2": 0.0001741702722636318,
+          "max_abs_error": 2.2641925420563425e-05,
+          "r2": 0.9999997029006001
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 0.00012284764462587575,
+          "mae": 0.0001056327477154909,
+          "relative_l2": 0.00017417027226363803,
+          "max_abs_error": 0.00022641925420563425,
+          "r2": 0.9999997029006001
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 4.146490728928982e-07,
+          "mae": 3.4087369200946115e-07,
+          "relative_l2": 4.1627082366369635e-07,
+          "max_abs_error": 8.743460939708569e-07,
+          "r2": 0.9999999851426453
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.9",
+      "seed": 2,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 112.92424429999664,
+        "lbfgs_s": 602.3125526001677,
+        "post_processing_s": 0.015920600155368447,
+        "total_s": 715.2602170999162
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 9.601429770458884e-08,
+          "loss_pde_momentum": 4.12740079472513e-08,
+          "loss_pde_energy": 5.4740289757337547e-08
+        },
+        "L-BFGS": {
+          "loss_total": 9.601429770458884e-08,
+          "loss_pde_momentum": 4.12740079472513e-08,
+          "loss_pde_energy": 5.4740289757337547e-08
+        }
+      },
+      "final_total_loss": 9.601429770458884e-08,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 3.953663320322229e-06,
+          "mae": 3.4455942219619654e-06,
+          "relative_l2": 1.0769483824444208e-05,
+          "max_abs_error": 6.438443104272995e-06,
+          "r2": 0.9999999993105628
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 3.0710943858958435e-05,
+          "mae": 2.426656731337283e-05,
+          "relative_l2": 4.354119665605239e-05,
+          "max_abs_error": 6.977180800527005e-05,
+          "r2": 0.9999999814324572
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 3.071094385895787e-06,
+          "mae": 2.426656731337071e-06,
+          "relative_l2": 4.354119665605159e-05,
+          "max_abs_error": 6.977180800532556e-06,
+          "r2": 0.9999999814324572
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 3.0710943858958435e-05,
+          "mae": 2.426656731337283e-05,
+          "relative_l2": 4.354119665605239e-05,
+          "max_abs_error": 6.977180800527005e-05,
+          "r2": 0.9999999814324572
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 2.965236270208812e-07,
+          "mae": 2.3574884842563054e-07,
+          "relative_l2": 2.9768337257951935e-07,
+          "max_abs_error": 6.699533271481428e-07,
+          "r2": 0.9999999924020102
+        }
+      ]
+    },
+    {
+      "case": "lam0.5_n0.9",
+      "seed": 3,
+      "relaxation_time": 0.5,
+      "power_law_index": 0.9,
+      "detailed": false,
+      "timings_s": {
+        "adam_s": 109.71819970011711,
+        "lbfgs_s": 636.9746543001384,
+        "post_processing_s": 0.015054899966344237,
+        "total_s": 746.7157598999329
+      },
+      "final_losses": {
+        "Adam": {
+          "loss_total": 2.8199049927131064e-07,
+          "loss_pde_momentum": 1.2727116255600592e-08,
+          "loss_pde_energy": 2.6926338301571003e-07
+        },
+        "L-BFGS": {
+          "loss_total": 2.8199049927131064e-07,
+          "loss_pde_momentum": 1.2727116255600592e-08,
+          "loss_pde_energy": 2.6926338301571003e-07
+        }
+      },
+      "final_total_loss": 2.8199049927131064e-07,
+      "metrics": [
+        {
+          "field": "u(y)",
+          "brinkman_number": "",
+          "rmse": 1.184890722966489e-06,
+          "mae": 9.580127475444518e-07,
+          "relative_l2": 3.2275539014995324e-06,
+          "max_abs_error": 2.411005115054987e-06,
+          "r2": 0.999999999938077
+        },
+        {
+          "field": "theta(y)",
+          "brinkman_number": "",
+          "rmse": 4.735263027165808e-05,
+          "mae": 3.936503916012537e-05,
+          "relative_l2": 6.713535722993342e-05,
+          "max_abs_error": 9.08029518711384e-05,
+          "r2": 0.9999999558575614
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 0.1,
+          "rmse": 4.735263027166321e-06,
+          "mae": 3.936503916013002e-06,
+          "relative_l2": 6.713535722994068e-05,
+          "max_abs_error": 9.080295187119392e-06,
+          "r2": 0.9999999558575614
+        },
+        {
+          "field": "T(y)",
+          "brinkman_number": 1.0,
+          "rmse": 4.735263027165808e-05,
+          "mae": 3.936503916012537e-05,
+          "relative_l2": 6.713535722993342e-05,
+          "max_abs_error": 9.08029518711384e-05,
+          "r2": 0.9999999558575614
+        },
+        {
+          "field": "mu_app(y)",
+          "brinkman_number": "",
+          "rmse": 1.0695301066314895e-07,
+          "mae": 8.807955225940444e-08,
+          "relative_l2": 1.0737131891178924e-07,
+          "max_abs_error": 2.0792549060288934e-07,
+          "r2": 0.999999999011524
+        }
+      ]
+    }
+  ],
+  "total_wall_time_s": 48009.251188899856
+}
