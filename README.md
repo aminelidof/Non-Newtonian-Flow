@@ -3,11 +3,11 @@
 Official code repository for the manuscript:  
 **"Coupled Non-Newtonian Flow and Heat Transport in a Plane Channel: A Physics-Informed Neural Network Study"**
 
-Authors: Mohamed El Amine Fodil1,2,, Merwan Abdelbari3, Meriem Fodil3
-1 Department of Hydraulics, Maghnia University Centre, Tlemcen, Algeria
-2 Laboratoire Ingénierie et Sciences Appliquées (IScApp), Maghnia, Tlemcen, Algeria
-3 Department of Mechanics, Hassiba Ben Bouali University, Chlef, Algeria
-Corresponding Author Email: fodilmedam@gmail.com
+**Authors:** Mohamed El Amine Fodil<sup>1,2,*</sup>, Merwan Abdelbari<sup>3</sup>, Meriem Fodil<sup>3</sup>  
+<sup>1</sup> Department of Hydraulics, Maghnia University Centre, Tlemcen, Algeria  
+<sup>2</sup> Laboratoire Ingénierie et Sciences Appliquées (IScApp), Maghnia, Tlemcen, Algeria  
+<sup>3</sup> Department of Mechanics, Hassiba Ben Bouali University, Chlef, Algeria  
+<sup>*</sup> **Corresponding Author Email:** fodilmedam@gmail.com
 
 ---
 
