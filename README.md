@@ -28,4 +28,12 @@ The numerical solver uses **DeepXDE** with a **PyTorch** backend. It integrates 
 
 ---
 
-## Repository Structure
+## 📌 Repository Structure
+
+```plaintext
+TRIZ-PINN-Crustal-Stress/
+├── output_results               
+├── main.py              
+├── LICENSE           
+├── README.md         
+└── requirements.txt  
